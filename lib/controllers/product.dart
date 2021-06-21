@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'dart:convert';
 
 import 'package:get/get.dart';
@@ -14,7 +16,7 @@ class Product extends GetxController{
 
   var productIndividual = null.obs;
 
-   Rx<p.Product> productIndi = null.obs;
+   Rx<p.Product> productIndi = Rx<p.Product>();
 
 
 
