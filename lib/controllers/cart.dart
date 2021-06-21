@@ -36,11 +36,12 @@ class Cart extends GetxController{
     var popularsLocal=[];
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    var json = jsonDecode(prefs.getString("user"));
     produts.value=[];
 
     print("aquii estoy ");
-    if(json!=null){
+    if(prefs.getString("user")!=null){
+      var json = jsonDecode(prefs.getString("user"));
+
       var url = Uri.parse('${baseUrl}/api/getCart');
       var response = await http.post(url,body: {"user_id":"${json["id"]}"});
 

@@ -14,7 +14,7 @@ class Product extends GetxController{
 
   var productIndividual = null.obs;
 
-   Rx<p.Product> productIndi = Rx<p.Product>();
+   Rx<p.Product> productIndi = null.obs;
 
 
 
