@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:get/get.dart';
 import 'package:spa_canino/controllers/cart.dart' as c;
+import 'package:spa_canino/controllers/coupon.dart';
 
 import 'package:spa_canino/controllers/home.dart';
 import 'package:flutter_inner_drawer/inner_drawer.dart';
@@ -23,6 +24,7 @@ class HomePage extends StatelessWidget {
   final Product product = Get.put(Product());
   final c.Cart cart = Get.put(c.Cart());
   PanelController controler = PanelController();
+  final Coupon coupons = Get.put(Coupon());
 
   List<String> images = [];
   p.Product selectedProduct;
@@ -31,11 +33,14 @@ class HomePage extends StatelessWidget {
       GlobalKey<InnerDrawerState>();
 
   Widget showScreen() {
+    print("esta llamando a coupon  ${home.showPanel.value}");
+
     if (home.showPanel.value == 1) {
       return Expanded(child: Shop(ShowProduct: (){
         controler.open();
       },));
-    } else if (home.showPanel.value == 1) {
+    } else if (home.showPanel.value == 2) {
+
       return Expanded(child: Coupons());
     } else if (home.showPanel.value == 3) {
       return Expanded(child: About());
@@ -48,8 +53,10 @@ class HomePage extends StatelessWidget {
       },));
 
     } else if (home.showPanel.value == 5) {
-      return Expanded(child: ProductPage(closeCart: () {
+      return Expanded(child: ProductPage(closeCart: ()  async{
         home.showPanel.value = 6;
+        await Future.delayed(Duration(seconds: 1));
+
         cart.getCart();
       }));
     }
@@ -328,13 +335,17 @@ class HomePage extends StatelessWidget {
                             child: GestureDetector(
                           onTap: () {
                             home.setPanel(2);
+                            coupons.tab.value=0;
+
+                            coupons.getCouponUser();
+
                             controler.open();
                           },
                           child: Container(
                             margin: EdgeInsets.only(left: 15, right: 10),
                             child: Column(
                               children: [
-                                Icon(Icons.add_shopping_cart_outlined,
+                                Icon(Icons.tab,
                                     size: 50, color: Colors.white),
                                 Container(
                                   margin: EdgeInsets.only(top: 10),

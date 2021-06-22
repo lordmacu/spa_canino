@@ -18,7 +18,7 @@ class Product extends GetxController{
 
   // Rx<p.Product> productIndi = Rx<p.Product>();
 
-  Rxn<p.Product> productIndi = Rxn<p.Product>();
+  var productIndi = p.Product().obs;
 
 
   List chunk(List list, int chunkSize) {

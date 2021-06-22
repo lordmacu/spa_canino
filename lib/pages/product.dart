@@ -20,13 +20,16 @@ class ProductPage extends StatelessWidget {
   ProductPage({this.closeCart});
 
   final Product product = Get.find();
+  BuildContext dialogContext; // <<----
 
   showLogin(context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     if(prefs.getString("user")==null){
+      dialogContext=context;
     Alert(
         context: context,
+
         title: "",
         style: AlertStyle(
             alertPadding: EdgeInsets.only(top: 0),
@@ -35,20 +38,29 @@ class ProductPage extends StatelessWidget {
           OnLoginCall: (int status) async {
             if (status == 200) {
 
+              print("aquii status200");
+
               SharedPreferences prefs = await SharedPreferences.getInstance();
               var json = jsonDecode(prefs.getString("user"));
+              print("aquii usereeeee  ${json}");
 
               cart.addCart(json["id"], product.productIndi.value.id);
             }
-            Navigator.pop(context, true);
+            Navigator.pop(dialogContext);
+            closeCart();
+
+
           },
         ),
         buttons: []).show();
     }else{
       var json = jsonDecode(prefs.getString("user"));
       cart.addCart(json["id"], product.productIndi.value.id);
+      closeCart();
+
+
     }
-    this.closeCart();
+
   }
 
   @override

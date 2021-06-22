@@ -61,19 +61,12 @@ class Cart extends GetxController{
         product.quantity= productItem["quantity"];
         product.status= productItem["status"];
         product.price= productItem["price"];
-
-
-
-
+        product.id= productItem["id"];
         popularsLocal.add(product);
       });
       produts.value=popularsLocal;
     }
     update();
-
-
-    //var json= jsonDecode(response.body);
-
   }
 
   @override
