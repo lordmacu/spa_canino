@@ -108,6 +108,26 @@ class Menu extends StatelessWidget{
                       ),
                       InkWell(
                         onTap: (){
+                          onSelectItem("pets");
+
+                        },
+                        child:  Container(
+                          padding: EdgeInsets.only(bottom: 15,top: 15,left: 30),
+
+                          child: Row(
+                            children: [
+                              Container(
+
+                                child: Icon(Icons.pets,color: Colors.white,size: 30,),
+                                margin: EdgeInsets.only(right: 10),
+                              ),
+                              Text("Mis mascotas",style: TextStyle(color: Colors.white,fontSize: 17),)
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: (){
                           onSelectItem("contact");
 
                         },

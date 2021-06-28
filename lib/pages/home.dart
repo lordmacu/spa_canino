@@ -7,6 +7,7 @@ import 'package:spa_canino/controllers/coupon.dart';
 
 import 'package:spa_canino/controllers/home.dart';
 import 'package:flutter_inner_drawer/inner_drawer.dart';
+import 'package:spa_canino/controllers/pet.dart';
 import 'package:spa_canino/controllers/product.dart';
 import 'package:spa_canino/pages/about.dart';
 import 'package:spa_canino/pages/cart.dart';
@@ -14,6 +15,7 @@ import 'package:spa_canino/pages/contact.dart';
 import 'package:spa_canino/pages/coupons.dart';
 import 'package:spa_canino/pages/menu.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
+import 'package:spa_canino/pages/pets.dart';
 import 'package:spa_canino/pages/product.dart';
 import 'package:spa_canino/pages/shop.dart';
 import 'package:spa_canino/helper.dart' as helper;
@@ -25,6 +27,7 @@ class HomePage extends StatelessWidget {
   final c.Cart cart = Get.put(c.Cart());
   PanelController controler = PanelController();
   final Coupon coupons = Get.put(Coupon());
+  final Pet pet = Get.put(Pet());
 
   List<String> images = [];
   p.Product selectedProduct;
@@ -209,8 +212,18 @@ class HomePage extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => Contact()),
               );
             }
+            if (item == "pets") {
+            //  home.setPanel(5);
+              //home.showPanel.value = 7;
+
+              pet.getPets();
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Pets()),
+              );
+            }
             print("este es el item  ${item}");
-            home.closeMenu();
+           //  home.closeMenu();
           },
         ),
         scaffold: Scaffold(
