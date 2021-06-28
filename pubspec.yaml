@@ -35,7 +35,7 @@ dependencies:
   toast:
   shared_preferences:
   flutter_picker:
-  image_picker:
+  image_picker: 0.4.12+1
   modal_progress_hud:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

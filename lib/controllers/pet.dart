@@ -112,8 +112,9 @@ class Pet extends GetxController{
 
 
 
+    var url = Uri.parse('${baseUrl}/api/setImage');
 
-    http.post('${baseUrl}/api/setImage', body: {
+    http.post(url, body: {
       "name": fileName,
 
       "image": base,
